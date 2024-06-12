@@ -1,6 +1,6 @@
 ---
 
-# printc: Enhanced Print Function for Python
+printc Enhanced Print Function for Python
 
 `printc` is an enhanced print function for Python that provides additional features such as timestamping, text styling, colored output, and improved error handling, offering more flexibility and customization options compared to the standard `print` function.
 
