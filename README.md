@@ -19,27 +19,6 @@ To install `printc`, use pip:
 ```bash
 pip install printc
 ```
-# `printc`: Enhanced Print Function for Python
-
-`printc` is an advanced Python package that extends the built-in `print` function. It introduces additional features such as timestamping, text styling, colored output, and file logging, offering greater flexibility and customization options for your print statements.
-
-## Features
-
-- **Timestamps**: Add timestamps to your messages to track when they were logged.
-- **Prefixes**: Easily add customizable prefixes to messages for improved categorization.
-- **Text Styling**: Apply text styles like bold and underline to enhance readability.
-- **Text Coloring**: Print text in various colors (requires `colorama` package) for better visual differentiation.
-- **File Output**: Redirect output to files for logging purposes, in addition to standard output and error streams.
-- **Flexible Parameters**: Customize output behavior with parameters such as `sep`, `end`, and `flush`.
-- **Robust Error Handling**: Gracefully handle errors related to timestamp formatting, file operations, and general printing.
-
-## Installation
-
-To install `printc`, use pip:
-
-```bash
-pip install printc
-```
 
 ## Usage
 
