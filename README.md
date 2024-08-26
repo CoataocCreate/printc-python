@@ -1,4 +1,3 @@
-```markdown
 # printc: Enhanced Print Function for Python
 
 `printc` is a Python package that extends the functionality of the built-in `print` function. It offers features such as timestamping, text styling, colored output, and file logging, providing greater flexibility and customization options for your print statements.
