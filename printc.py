@@ -1,6 +1,7 @@
 import sys
 import datetime
 import colorama
+from typing import Optional, Union
 
 colorama.init()
 
@@ -9,7 +10,18 @@ class TextStyle:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-def printc(*args, sep=" ", end="\n", file=None, flush=False, timestamp=False, prefix=None, color=None, style=None, **kwargs):
+def printc(
+    *args: str,
+    sep: str = " ",
+    end: str = "\n",
+    file: Optional[str] = None,
+    flush: bool = False,
+    timestamp: bool = False,
+    prefix: Optional[str] = None,
+    color: Optional[str] = None,
+    style: Optional[str] = None,
+    **kwargs
+) -> None:
     # Prepare the concatenated message
     concatenated_string = sep.join(map(str, args))
     
@@ -25,35 +37,36 @@ def printc(*args, sep=" ", end="\n", file=None, flush=False, timestamp=False, pr
             now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             concatenated_string = f"[{now}] {concatenated_string}"
         except Exception as e:
-            print(f"Error formatting timestamp: {e}")
+            print(f"Error formatting timestamp: {e}", file=sys.stderr)
     
-    elif prefix:
+    if prefix:
         concatenated_string = f"{prefix}: {concatenated_string}"
     
     # Apply text color if specified
     if color:
-        if color in colorama.Fore.__dict__:
-            color_code = getattr(colorama.Fore, color)
+        color_code = getattr(colorama.Fore, color.upper(), None)
+        if color_code:
             concatenated_string = f"{color_code}{concatenated_string}{colorama.Style.RESET_ALL}"
         else:
-            print(f"Invalid color '{color}' specified. Printing without color.")
+            print(f"Invalid color '{color}' specified. Printing without color.", file=sys.stderr)
     
     # Determine where to print
-    try:
-        if file is None:
-            output_stream = sys.stdout
-        else:
-            output_stream = open(file, 'a')
-        
+    output_stream = sys.stdout
+    if file:
         try:
-            # Print to the appropriate stream
-            print(concatenated_string, end=end, file=output_stream, flush=flush, **kwargs)
-        finally:
-            # Close the file if opened
-            if file is not None:
-                output_stream.close()
+            output_stream = open(file, 'a')
+        except IOError as e:
+            print(f"Error opening file '{file}': {e}", file=sys.stderr)
+            return
+    
+    # Print to the appropriate stream
+    try:
+        print(concatenated_string, end=end, file=output_stream, flush=flush, **kwargs)
     except Exception as e:
-        print(f"Error printing: {e}")
+        print(f"Error printing: {e}", file=sys.stderr)
+    finally:
+        if file:
+            output_stream.close()
 
 # Example usage
 printc("apple", "banana", "cherry", sep="/", end="***", timestamp=True, color="GREEN")
