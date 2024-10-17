@@ -69,5 +69,5 @@ def printc(
             output_stream.close()
 
 # Example usage
-printc("apple", "banana", "cherry", sep="/", end="***", timestamp=True, color="GREEN")
-printc("pineapple", "orange", "grape", sep=", ", file="output.txt", flush=True, prefix="INFO", style="bold")
+# printc("apple", "banana", "cherry", sep="/", end="***", timestamp=True, color="GREEN")
+#printc("pineapple", "orange", "grape", sep=", ", file="output.txt", flush=True, prefix="INFO", style="bold")
