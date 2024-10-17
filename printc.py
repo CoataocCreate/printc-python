@@ -70,4 +70,4 @@ def printc(
 
 # Example usage
 # printc("apple", "banana", "cherry", sep="/", end="***", timestamp=True, color="GREEN")
-#printc("pineapple", "orange", "grape", sep=", ", file="output.txt", flush=True, prefix="INFO", style="bold")
+# 0printc("pineapple", "orange", "grape", sep=", ", file="output.txt", flush=True, prefix="INFO", style="bold")
